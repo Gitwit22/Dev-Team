@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+//team members class
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,29 +12,29 @@ namespace Dev_Team
    abstract internal class TeamMember
     {
         public string Name { get; set; }
-        public int HoursAtMaxEfficiency { get; set; }
-        public int HoursAtReducedEfficiency { get; set; }
-        public int TotalHoursWorked { get; set; }
-        private int CurrentHoursWorked { get; } = 0;
+        public double HoursAtMaxEfficiency { get; set; }
+        public double HoursAtReducedEfficiency { get; set; }
+        public double TotalHoursWorked { get; private set; }
+        public double CurrentHoursWorked { get; set; } = 0;
 
 
     
 
     
-    protected int ThreeAttributes(string name, int hoursAtMaxEffeciency, int hoursAtReducedEffciency)
+    protected TeamMember(string name, double hoursAtMaxEffeciency, double hoursAtReducedEffciency)
     {
         Name = name;
         HoursAtMaxEfficiency = hoursAtMaxEffeciency;
         HoursAtReducedEfficiency = hoursAtReducedEffciency;
 
-    int TotalWorkHours = HoursAtMaxEfficiency + HoursAtReducedEfficiency;
-        return TotalWorkHours;
+            TotalHoursWorked = HoursAtMaxEfficiency + HoursAtReducedEfficiency;
+        
               
     }
 
-        public abstract int GetBugAdjustmentValue();
+        public abstract double GetBugAdjustmentValue();
         
-
+        
 
     }
 }

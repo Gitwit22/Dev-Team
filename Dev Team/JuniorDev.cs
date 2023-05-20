@@ -6,18 +6,37 @@ using System.Threading.Tasks;
 
 namespace Dev_Team
 {
-    abstract internal class JuniorDev : TeamMember
+     internal class JuniorDev : TeamMember
     {
-        public int BugsCreatedPerHour { get; set; }
+        public double BugsCreatedPerHour { get; set; }
 
-        protected int FourAttributes(string name, int hoursAtMaxEffeciency, int hoursAtReducedEffciency, int bugsCreatedPerHour) : base(name, hoursAtMaxEfficiency, hoursAtMaxEfficiency)
+        public JuniorDev(string name, double hoursAtMaxEffeciency, double hoursAtReducedEffciency, double bugsCreatedPerHour) : base(name, hoursAtMaxEffeciency, hoursAtReducedEffciency)
         {
             BugsCreatedPerHour = bugsCreatedPerHour;
 
 
         }
+        
+        public override double GetBugAdjustmentValue()
+        {
+            if (CurrentHoursWorked <= HoursAtMaxEfficiency)
+            {
+                return BugsCreatedPerHour;
 
-       
+            }
+            else if (CurrentHoursWorked > HoursAtMaxEfficiency || CurrentHoursWorked <= TotalHoursWorked)
+            {
+                return BugsCreatedPerHour * 2;
+            }
+
+            else
+
+            {
+                return 0;
+            }
+
+
+        }
     }
 }
 
